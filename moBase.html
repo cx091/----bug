@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--防止放大缩小-->
+		<meta name="viewport" content="user-scalable=0" />
+		<!--设置页面是否已全屏模式运行-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!--format-detection 启动或禁用自动识别页面中的电话号码。-->
+		<meta name="format-detection" content="telephone=no">
+		<!--顶部状态栏背景色-->
+		<!--除非你先使用apple-mobile-web-app-capable指定全屏模式，否则这个meta标签不会起任何作用。-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!--设置缓存-->
+		<meta http-equiv="Cache-Control" content="no-cache" />
+
+	</head>
+	<!--桌面图标-->
+	<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
+	<!--启动画面-->
+	<link rel="apple-touch-startup-image" href="start.png" />
+	<!--iPhone-->
+	<link href="apple-touch-startup-image-320x460.png" media="(device-width: 320px)" rel="apple-touch-startup-image" />
+
+	<!-- iPhone Retina -->
+	<link href="apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+	<!-- iPhone 5 -->
+	<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="apple-touch-startup-image-640x1096.png">
+
+	<!-- iPad portrait -->
+	<link href="apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (orientation: portrait)" rel="apple-touch-startup-image" />
+
+	<!-- iPad landscape -->
+	<link href="apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (orientation: landscape)" rel="apple-touch-startup-image" />
+
+	<!-- iPad Retina portrait -->
+	<link href="apple-touch-startup-image-1536x2008.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+	<!-- iPad Retina landscape -->
+	<link href="apple-touch-startup-image-1496x2048.png" media="(device-width: 1536px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+
+	<!--active兼容处理 即 伪类 :active 失效-->
+
+	<body ontouchstart="">
+		<li><canvas></canvas></li>
+		<!--html5调用安卓或者ios的拨号功能-->
+		<a href="tel:4008106999,1034">400-810-6999 转 1034</a>
+		<a href="tel:15677776767">点击拨打15677776767</a>
+		<!--IOS中input键盘事件keyup、keydown、keypress支持不是很好-->
+		<input type="text" id="testInput">
+		<!--h5网站input 设置为type=number的问题-->
+		<input type="number" oninput="checkTextLength(this ,10)">
+		<!--IOS键盘字母输入，默认首字母大写-->
+		<input type="text" autocapitalize="off" />
+		<!--移动端点击300ms延迟-->
+		<button tap="ss()"></button>
+		<!--移动端点透问题-->
+		<div id="haorooms">点头事件测试</div>
+
+		<a href="www.jb51.net">www.jb51.net</a>
+		<!--关于 iOS 系统中，中文输入法输入英文时，字母之间可能会出现一个六分之一空格-->
+		<input type="" name="" id="" value="" this.value = this.value.replace(/\u2006/g, '');/>
+		<!--移动端 HTML5 input date 不支持 placeholder 问题-->
+		<input placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')"  id="date">
+	</body>
+	<script type="text/javascript">
+		//移动端图片加载慢
+		var total = 17;
+		var zWin = $(window);
+		var render = function() {
+			var padding = 2;
+			var winWidth = zWin.width();
+			var picWidth = Math.floor((winWidth - padding * 3) / 4);
+			var tmpl = '';
+			for(var i = 1; i <= totla; i++) {
+				var p = padding;
+				var imgSrc = 'img/' + i + '.jpg';
+				if(i % 4 == 1) {
+					p = 0;
+				}
+				tmpl += '<li style="width:' + picWidth + 'px;height:' + picWidth + 'px;padding-left:' + p + 'px;padding-top:' + padding + 'px;"><canvas id="cvs_' + i + '"></canvas></li>';
+				var imageObj = new Image();
+				imageObj.index = i;
+				imageObj.onload = function() {
+					var cvs = $('#cvs_' + this.index)[0].getContext('2d');
+					cvs.width = this.width;
+					cvs.height = this.height;
+					cvs.drawImage(this, 0, 0);
+				}
+				imageObj.src = imgSrc;
+			}
+
+		}
+		render();
+	</script>
+	<script type="text/javascript">
+		//webkit mask 兼容处理
+		if('WebkitMask' in document.documentElement.style) {
+			alert('支持mask');
+		} else {
+			alert('不支持mask');
+		}
+	</script>
+	<script type="text/javascript">
+		// IOS中input键盘事件keyup、keydown、keypress支持不是很好
+		document.getElementById('testInput').addEventListener('input', function(e) {
+			var value = e.target.value;
+		});
+	</script>
+	<script type="text/javascript">
+		//h5网站input 设置为type=number的问题
+		function checkTextLength(obj, length) {
+			if(obj.value.length > length) {
+				obj.value = obj.value.substr(0, length);
+			}
+		}
+	</script>
+	<!--移动端点透问题-->
+	<script type="text/javascript">
+		$('#haorooms').on('tap', function() {
+			$('#haorooms').hide();
+		});
+	</script>
+	<!--移动端 HTML5 audio autoplay 失效问题-->
+	<script type="text/javascript">
+		document.addEventListener('touchstart', function () {
+  document.getElementsByTagName('audio')[0].play();
+  document.getElementsByTagName('audio')[0].pause();
+});
+	</script>
+	<!--唤起select的option展开-->
+	<script>
+		function showDropdown(sltElement) {
+  var event;
+  event = document.createEvent('MouseEvents');
+  event.initMouseEvent('mousedown', true, true, window);
+  sltElement.dispatchEvent(event);
+};
+	</script>
+</html>

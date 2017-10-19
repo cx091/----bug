@@ -1,0 +1,137 @@
+body {
+	font-family: helvetica;
+	margin: 0;
+}
+
+body* {
+	-webkit-text-size-adjust: 100%;
+	/*不让缩放*/
+	-webkit-user-select: none;
+	/*长时间按下不让选中*/
+}
+
+a,
+button,
+input {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/*默认阴影*/
+}
+
+button,
+input {
+	-webkit-appearance: none;
+	/*修改默认外观*/
+	border-radius: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+input {
+	outline: none;
+	/*点击没有外框*/
+	vertical-align: middle;
+	/*居中*/
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+img {
+	vertical-align: middle;
+}
+h3,h4,p{
+	margin: 0;
+}
+.left{
+	float: left;
+}
+/*清除浮动*/
+.clearfix:after{
+	content:'';
+	display: block;
+	clear: both;
+}
+/*安卓浏览器看背景图片，有些设备会模糊*/
+background:url(../images/icon/all.png) no-repeat center center;
+-webkit-background-size:50px 50px;
+background-size: 50px 50px;display:inline-block; width:100%; height:50px;
+
+/*上下拉动滚动条时卡顿、慢*/
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+/*禁止复制、选中文本*/
+Element {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+   user-select: none;
+}
+/*长时间按住页面出现闪退*/
+Element {
+  -webkit-touch-callout: none;
+}
+/*iphone及ipad下输入框默认内阴影*/
+Element{
+  -webkit-appearance: none; 
+}
+/*ios和android下触摸元素时出现半透明灰色遮罩*/
+Element {
+  -webkit-tap-highlight-color:rgba(255,255,255,0)
+}
+/*动画定义3D启用硬件加速*/
+Element {
+  -webkit-transform:translate3d(0, 0, 0)
+  transform: translate3d(0, 0, 0);
+}
+/*Retina屏的1px边框*/
+Element{
+  border-width: thin;
+}
+/*旋转屏幕时，字体大小调整的问题*/
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
+  -webkit-text-size-adjust:100%;
+}
+/*transition闪屏*/
+Element{
+-webkit-transform-style: preserve-3d;
+ -webkit-backface-visibility:hidden;
+}
+/*圆角bug*/
+Element{
+	background-clip: padding-box;
+}
+/*ios 设置input 按钮样式会被默认样式覆盖*/
+input,
+textarea {
+  border: 0; 
+  -webkit-appearance: none; 
+}
+/*select 下拉选择设置右对齐*/
+select option {
+direction: rtl;
+}
+/*通过transform进行skew变形，rotate旋转会造成出现锯齿现象*/
+element{
+	-webkit-transform: rotate(-4deg) skew(10deg) translateZ(0);
+ transform: rotate(-4deg) skew(10deg) translateZ(0);
+ outline: 1px solid rgba(255,255,255,0)
+}
+/*消除 IE10 里面的那个叉号*/
+input:-ms-clear{display:none;}
+/*关于 iOS 与 OS X 端字体的优化(横竖屏会出现字体加粗不一致等)*/
+element{
+	-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+text-size-adjust: 100%;
+}
+/*部分机型存在type为search的input，自带close按钮样式修改方法*/
+#Search::-webkit-search-cancel-button{
+  display: none;  
+}
